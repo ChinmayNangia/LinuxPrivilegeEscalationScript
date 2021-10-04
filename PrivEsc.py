@@ -36,6 +36,7 @@ def OS_KERNEL_CHECK():
     os.system('whoami')
     os.system('id')
     os.system('uname -a')
+    os.system('uname -r')
     print(" ")
     print("---------------------------------- etc/passwd start ---------------------------------------")
     print(" ")

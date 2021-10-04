@@ -1,1 +1,1 @@
-# LinuxPrivilegeEscalationScript
+# Linux Privilege Escalation Script
