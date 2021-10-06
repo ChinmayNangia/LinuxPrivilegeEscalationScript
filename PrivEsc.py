@@ -17,9 +17,9 @@
 #          + Checking for SUID and GUID set owner user ID , set group owner Id 
 #          + check for any cronjobs 
 #          + create a text file to as output and name it as privEsc_summary.txt
-
-
+import requests
 import os
+import re
 
 
 def return_to_main_function():
@@ -73,12 +73,6 @@ def OS_KERNEL_CHECK():
     
     # This will run uname -a system command
 
-    
-    
-    
-    
-
-
  # This will checkk for the services running as rooot
 def ROOT_SERVICE_CHECK():
     if flag != 0 :
@@ -114,8 +108,25 @@ def SUID_GUID_CHECK():
         print("SUID and GUID check functions ")
         print("SUID Checks")
         os.system('find / -type f -perm -04000 -ls 2>/dev/null')
+        print("-----------------------------------------------------------------")
+
+
+        gp = ("base64")
+        gtfo = requests.get('https://gtfobins.github.io/')
+        srch = re.search(r'(.*?)' + gp + '(.*?)',gtfo.text)
+        if(srch == None):
+            print("No matches found")
+        
+        else:
+            print(srch)
+
+
+
+
+        
         print("GUID Check")
         os.system('find / -perm -g=s -o -perm -u=s -type f 2>/dev/null')
+        print("-----------------------------------------------------------------")
         return_to_main_function()
 
 
@@ -125,6 +136,28 @@ def SUID_GUID_CHECK():
 def MAIN():
     global flag
     flag = 0 
+    print("""                                                                                                                   
+LLLLLLLLLLL               iiii                   PPPPPPPPPPPPPPPPP                                        SSSSSSSSSSSSSSS 
+L:::::::::L              i::::i                  P::::::::::::::::P                                     SS:::::::::::::::S
+L:::::::::L               iiii                   P::::::PPPPPP:::::P                                   S:::::SSSSSS::::::S
+LL:::::::LL                                      PP:::::P     P:::::P                                  S:::::S     SSSSSSS
+  L:::::L               iiiiiiinnnn  nnnnnnnn      P::::P     P:::::P  eeeeeeeeeeee    aaaaaaaaaaaaa   S:::::S            
+  L:::::L               i:::::in:::nn::::::::nn    P::::P     P:::::Pee::::::::::::ee  a::::::::::::a  S:::::S            
+  L:::::L                i::::in::::::::::::::nn   P::::PPPPPP:::::Pe::::::eeeee:::::eeaaaaaaaaa:::::a  S::::SSSS         
+  L:::::L                i::::inn:::::::::::::::n  P:::::::::::::PPe::::::e     e:::::e         a::::a   SS::::::SSSSS    
+  L:::::L                i::::i  n:::::nnnn:::::n  P::::PPPPPPPPP  e:::::::eeeee::::::e  aaaaaaa:::::a     SSS::::::::SS  
+  L:::::L                i::::i  n::::n    n::::n  P::::P          e:::::::::::::::::e aa::::::::::::a        SSSSSS::::S 
+  L:::::L                i::::i  n::::n    n::::n  P::::P          e::::::eeeeeeeeeee a::::aaaa::::::a             S:::::S
+  L:::::L         LLLLLL i::::i  n::::n    n::::n  P::::P          e:::::::e         a::::a    a:::::a             S:::::S
+LL:::::::LLLLLLLLL:::::Li::::::i n::::n    n::::nPP::::::PP        e::::::::e        a::::a    a:::::a SSSSSSS     S:::::S
+L::::::::::::::::::::::Li::::::i n::::n    n::::nP::::::::P         e::::::::eeeeeeeea:::::aaaa::::::a S::::::SSSSSS:::::S
+L::::::::::::::::::::::Li::::::i n::::n    n::::nP::::::::P          ee:::::::::::::e a::::::::::aa:::aS:::::::::::::::SS 
+LLLLLLLLLLLLLLLLLLLLLLLLiiiiiiii nnnnnn    nnnnnnPPPPPPPPPP            eeeeeeeeeeeeee  aaaaaaaaaa  aaaa SSSSSSSSSSSSSSS     
+    """)
+
+
+
+
 
     OPTION = input("""
     1 for OS and kernel check
@@ -134,10 +167,7 @@ def MAIN():
     5 For EXIT
     Lets Go !! >> """)
 
-    
-
-
-
+   
 
     if (OPTION == "1"):
         print(f"print you chose {OPTION}")
@@ -170,10 +200,5 @@ def MAIN():
         print("This is invalid option try again  ")
         MAIN()
         
-
-    
-    
-   
-
 MAIN()
 
